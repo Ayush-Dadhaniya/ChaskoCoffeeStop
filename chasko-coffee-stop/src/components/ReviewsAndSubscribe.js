@@ -40,15 +40,15 @@ export default function ReviewsAndSubscribe() {
         </div>
         <div className="bg-brown-100 rounded-lg p-8">
           <h3 className="text-3xl text-amber-900 font-bold text-center italic mb-6">Subscribe to Our Newsletter</h3>
-          <form onSubmit={handleSubmit} className="max-w-md mx-auto">
-            <div className="flex">
+          <form onSubmit={handleSubmit}>
+            <div className="flex justify-center">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-grow px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
+                className="flex-grow px-4 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
               />
               <button
                 type="submit"

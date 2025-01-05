@@ -56,7 +56,7 @@ export default function Header() {
           </button>
         </div>
         {isMenuOpen && (
-          <div className="md:hidden mt-4 space-y-4">
+          <div className="flex flex-col gap-2 mt-4">
             {menuItems.map((item) => (
               <NavLink key={item.to} to={item.to}>{item.name}</NavLink>
             ))}
