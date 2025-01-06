@@ -8,9 +8,7 @@ export default function SignIn() {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    // Here you would typically handle the sign-in logic
     console.log('Sign In:', { email, password });
-    // Simulate a successful sign-in
     await new Promise(resolve => setTimeout(resolve, 1000));
     alert('Sign in successful!');
     navigate('/');
@@ -32,7 +30,7 @@ export default function SignIn() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brown-500 focus:ring focus:ring-brown-500 focus:ring-opacity-50"
+              className="mt-1 block w-full rounded-md border-amber-900 border shadow-sm focus:border-brown-500 focus:ring focus:ring-brown-500 focus:ring-opacity-50"
             />
           </div>
           <div>
@@ -43,7 +41,7 @@ export default function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-brown-500 focus:ring focus:ring-brown-500 focus:ring-opacity-50"
+              className="mt-1 block w-full border rounded-md border-amber-900 shadow-sm focus:border-brown-500 focus:ring focus:ring-brown-500 focus:ring-opacity-50"
             />
           </div>
           <button
