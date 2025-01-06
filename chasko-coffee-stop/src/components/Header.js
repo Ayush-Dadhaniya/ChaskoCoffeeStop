@@ -18,7 +18,6 @@ export default function Header() {
   const menuItems = [
     { name: 'Home', to: 'home' },
     { name: 'About', to: 'about' },
-    { name: 'Coffee Perks', to: 'coffee-perks' },
     { name: 'Menu', to: 'menu' },
     { name: 'Reviews', to: 'reviews-subscribe' },
   ];
