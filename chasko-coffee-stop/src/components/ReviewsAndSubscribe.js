@@ -24,7 +24,7 @@ const ReviewsAndSubscribe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
-    const response = await fetch('http://127.0.0.1:8000/subscribe/', {
+    const response = await fetch('http://127.0.0.1:8000/api/subscriptions/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
