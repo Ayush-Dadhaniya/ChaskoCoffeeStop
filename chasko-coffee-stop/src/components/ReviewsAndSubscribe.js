@@ -45,6 +45,7 @@ export default function ReviewsAndSubscribe() {
               <input
                 type="email"
                 value={email}
+                name="subscribe"
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
