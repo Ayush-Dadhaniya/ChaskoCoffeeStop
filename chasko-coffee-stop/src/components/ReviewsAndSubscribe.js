@@ -1,4 +1,22 @@
 import React, { useState } from 'react';
+import Review from './Review'
+const reviews = [
+  {
+    name: "Sahil Patel",
+    content: "The best coffee I've ever had! The atmosphere is cozy and the staff is incredibly friendly.",
+    rating: 5
+  },
+  {
+    name: "Vraj Bhanderi",
+    content: "Great selection of coffee and pastries. My go-to spot for morning meetings.",
+    rating: 4
+  },
+  {
+    name: "Ayush Dadhaniya",
+    content: "Love their seasonal specials. The pumpkin spice latte is to die for!",
+    rating: 5
+  }
+];
 
 const ReviewsAndSubscribe = () => {
   const [email, setEmail] = useState('');
