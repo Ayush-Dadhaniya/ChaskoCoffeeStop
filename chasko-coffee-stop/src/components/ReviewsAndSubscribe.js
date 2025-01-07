@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Review from './Review';
 
 const reviews = [
   {
@@ -22,9 +21,14 @@ const reviews = [
 export default function ReviewsAndSubscribe() {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Subscribed:', email);
+    const API_URL = 'http://127.0.0.1:8000/subscribe/';
+    await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
     setEmail('');
     alert('Thank you for subscribing!');
   };
@@ -35,7 +39,11 @@ export default function ReviewsAndSubscribe() {
         <h2 className="text-5xl font-bold font-serif text-center italic text-amber-900 mb-12">Customer Reviews</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {reviews.map((review, index) => (
-            <Review key={index} {...review} />
+            <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold text-brown-800">{review.name}</h3>
+              <p className="text-brown-600 mt-2">{review.content}</p>
+              <p className="text-brown-600 mt-2">Rating: {review.rating} stars</p>
+            </div>
           ))}
         </div>
         <div className="bg-brown-100 rounded-lg p-8">
@@ -49,7 +57,7 @@ export default function ReviewsAndSubscribe() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-grow px-4  max-w-[400px] rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
+                className="flex-grow px-4 max-w-[400px] rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
               />
               <button
                 type="submit"
