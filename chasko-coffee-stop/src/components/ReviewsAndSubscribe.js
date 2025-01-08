@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
-import Review from './Review'
-const reviews = [
-  {
-    name: "Sahil Patel",
-    content: "The best coffee I've ever had! The atmosphere is cozy and the staff is incredibly friendly.",
-    rating: 5
-  },
-  {
-    name: "Vraj Bhanderi",
-    content: "Great selection of coffee and pastries. My go-to spot for morning meetings.",
-    rating: 4
-  },
-  {
-    name: "Ayush Dadhaniya",
-    content: "Love their seasonal specials. The pumpkin spice latte is to die for!",
-    rating: 5
-  }
-];
+import React, { useState, useEffect } from 'react';
+import Review from './Review';
 
 const ReviewsAndSubscribe = () => {
+  const [reviews, setReviews] = useState([]);
   const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      const response = await fetch('http://127.0.0.1:8000/api/reviews/');
+      if (response.ok) {
+        const data = await response.json();
+        setReviews(data);
+      } else {
+        console.error('Failed to fetch reviews');
+      }
+    };
+
+    fetchReviews();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,7 +60,7 @@ const ReviewsAndSubscribe = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 required
-                className="flex-grow px-4  max-w-[400px] rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
+                className="flex-grow px-4 max-w-[400px] rounded-l-lg focus:outline-none focus:ring-2 focus:ring-brown-600"
               />
               <button
                 type="submit"
