@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Review({ name, content, rating }) {
+export default function Review({ user , content, rating }) {
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center mb-4">
