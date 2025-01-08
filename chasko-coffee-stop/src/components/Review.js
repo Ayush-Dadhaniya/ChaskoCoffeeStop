@@ -11,7 +11,7 @@ export default function Review({ name, content, rating }) {
             </svg>
           ))}
         </div>
-        <h3 className="text-xl italic font-serif font-bold">{name}</h3>
+        <h3 className="text-xl italic font-serif font-bold">{user}</h3>
       </div>
       <p className="text-gray-600">{content}</p>
     </div>
