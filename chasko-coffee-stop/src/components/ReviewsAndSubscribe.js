@@ -4,7 +4,9 @@ import Review from './Review';
 const ReviewsAndSubscribe = () => {
   const [reviews, setReviews] = useState([]);
   const [email, setEmail] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Fetch reviews from the backend
   useEffect(() => {
     const fetchReviews = async () => {
       const response = await fetch('http://127.0.0.1:8000/api/reviews/');
@@ -19,7 +21,15 @@ const ReviewsAndSubscribe = () => {
   
     fetchReviews();
   }, []);
-  
+
+  // Change the current review after a specified interval
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    }, 5000); // Change every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [reviews]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -46,11 +56,19 @@ const ReviewsAndSubscribe = () => {
     <section id="reviews-subscribe" className="min-h-screen flex items-center bg-white">
       <div className="container mx-auto px-4 py-16">
         <h2 className="text-5xl font-bold font-serif text-center italic text-amber-900 mb-12">Customer Reviews</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {reviews.map((review, index) => (
-            <Review key={index} {...review} />
-          ))}
+        
+        {/* Carousel Container */}
+        <div className="relative overflow-hidden mb-16">
+          <div className="flex transition-all duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+            {reviews.map((review, index) => (
+              <div key={index} className="w-full flex-shrink-0">
+                <Review {...review} />
+              </div>
+            ))}
+          </div>
         </div>
+
+        {/* Newsletter Subscription */}
         <div className="bg-brown-100 rounded-lg p-8">
           <h3 className="text-3xl text-amber-900 font-bold text-center italic mb-6">Subscribe to Our Newsletter</h3>
           <form onSubmit={handleSubmit}>

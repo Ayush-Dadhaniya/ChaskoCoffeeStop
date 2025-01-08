@@ -2,7 +2,7 @@ const Review = ({ user, content, rating }) => {
   console.log(user);  // Log the user data to check
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
-      <div className="flex items-center mb-4">
+      <div className="flex justify-center tems-center mb-4">
         <div className="text-yellow-400 mr-2">
           {[...Array(rating)].map((_, i) => (
             <svg key={i} className="w-5 h-5 inline" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -10,10 +10,11 @@ const Review = ({ user, content, rating }) => {
             </svg>
           ))}
         </div>
-        <h3 className="text-xl italic font-serif font-bold">{user.username}</h3>  {/* Safe access */}
+        <h3 className="text-3xl flex justify-center italic font-serif font-bold">{user.username}</h3>  {/* Safe access */}
       </div>
-      <p className="text-gray-600">{content}</p>
+      <p className="text-gray-600 flex justify-center">{content}</p>
     </div>
+    
   );
 };
 export default Review;
