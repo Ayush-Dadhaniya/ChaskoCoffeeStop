@@ -1,6 +1,5 @@
-import React from 'react';
-
-export default function Review({ user , content, rating }) {
+const Review = ({ user, content, rating }) => {
+  console.log(user);  // Log the user data to check
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
       <div className="flex items-center mb-4">
@@ -11,9 +10,10 @@ export default function Review({ user , content, rating }) {
             </svg>
           ))}
         </div>
-        <h3 className="text-xl italic font-serif font-bold">{user}</h3>
+        <h3 className="text-xl italic font-serif font-bold">{user.username}</h3>  {/* Safe access */}
       </div>
       <p className="text-gray-600">{content}</p>
     </div>
   );
-}
+};
+export default Review;

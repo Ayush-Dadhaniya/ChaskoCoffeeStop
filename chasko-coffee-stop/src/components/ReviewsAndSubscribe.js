@@ -10,14 +10,16 @@ const ReviewsAndSubscribe = () => {
       const response = await fetch('http://127.0.0.1:8000/api/reviews/');
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         setReviews(data);
       } else {
         console.error('Failed to fetch reviews');
       }
     };
-
+  
     fetchReviews();
   }, []);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
