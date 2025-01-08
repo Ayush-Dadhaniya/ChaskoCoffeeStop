@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <section
       id="home"
-      className="bg-no-repeat mt-16 bg-auto bg-center h-screen relative flex items-center justify-center"
+      className="bg-no-repeat mt-8 bg-auto bg-center h-screen relative flex items-center justify-center"
       style={{ backgroundImage: `url(${require('../images/coffee-shop-bg.png')})` }}
     >
       <div className="text-amber-100 mb-12 px-4">
