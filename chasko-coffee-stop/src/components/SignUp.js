@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -13,11 +15,12 @@ export default function SignUp() {
       alert("Passwords don't match!");
       return;
     }
-    // Here you would typically handle the sign-up logic
+    // Here you would typically handle the sign-up logic with your backend
     console.log('Sign Up:', { email, password });
     // Simulate a successful sign-up
     await new Promise(resolve => setTimeout(resolve, 1000));
     alert('Sign up successful!');
+    login({ email }); // Log the user in after successful sign-up
     navigate('/');
   };
 
@@ -69,6 +72,14 @@ export default function SignUp() {
             Sign Up
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <p className="text-sm text-brown-600">
+            Already have an account?{' '}
+            <Link to="/signin" className="text-brown-800 hover:underline">
+              Sign In
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

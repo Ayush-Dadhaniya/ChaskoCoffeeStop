@@ -1,6 +1,7 @@
 import React from 'react';
 import 'font-awesome/css/font-awesome.min.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -12,7 +13,25 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import './index.css';
 
-function App() {
+// const ProtectedRoute = ({ children }) => {
+//   const { user } = useAuth();
+//   if (!user) {
+//     return <Navigate to="/signin" replace />;
+//   }
+//   return children;
+// };
+
+const PublicRoute = ({ children }) => {
+  const { user } = useAuth();
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
+
+function AppContent() {
+  const { user } = useAuth();
+
   return (
     <Router>
       <div className="flex flex-col min-h-screen">
@@ -24,15 +43,31 @@ function App() {
               <About />
               <CoffeePerks />
               <Menu />
-              <ReviewsAndSubscribe />
+              {!user && <ReviewsAndSubscribe />}
             </>
           } />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={
+            <PublicRoute>
+              <SignUp />
+            </PublicRoute>
+          } />
+          <Route path="/signin" element={
+            <PublicRoute>
+              <SignIn />
+            </PublicRoute>
+          } />
         </Routes>
         <Footer />
       </div>
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 

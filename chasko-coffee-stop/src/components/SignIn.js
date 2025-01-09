@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    // Here you would typically handle the sign-in logic with your backend
     console.log('Sign In:', { email, password });
+    // Simulate a successful sign-in
     await new Promise(resolve => setTimeout(resolve, 1000));
     alert('Sign in successful!');
+    login({ email }); // Log the user in after successful sign-in
     navigate('/');
   };
 
@@ -51,7 +56,16 @@ export default function SignIn() {
             Sign In
           </button>
         </form>
+        <div className="mt-4 text-center">
+          <p className="text-sm text-brown-600">
+            Don't have an account?{' '}
+            <Link to="/signup" className="text-brown-800 hover:underline">
+              Sign Up
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );
 }
+
