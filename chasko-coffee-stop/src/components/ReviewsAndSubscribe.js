@@ -9,7 +9,7 @@ const ReviewsAndSubscribe = () => {
   // Fetch reviews from the backend
   useEffect(() => {
     const fetchReviews = async () => {
-      const response = await fetch('http://127.0.0.1:8000/api/reviews/');
+      const response = await fetch('https://chasko-coffee-stop-backend.vercel.app/api/reviews/');
       if (response.ok) {
         const data = await response.json();
         console.log(data);
@@ -34,7 +34,7 @@ const ReviewsAndSubscribe = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const csrfToken = document.cookie.match(/csrftoken=([^;]+)/)?.[1];
-    const response = await fetch('http://127.0.0.1:8000/api/subscriptions/', {
+    const response = await fetch('https://chasko-coffee-stop-backend.vercel.app/api/subscriptions/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

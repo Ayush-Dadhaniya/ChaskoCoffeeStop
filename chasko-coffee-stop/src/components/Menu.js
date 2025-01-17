@@ -1,48 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
 import { ChevronLeft, ChevronRight } from 'react-feather';
 
-const menuItems = [
-  {
-    name: "Espresso",
-    description: "A shot of pure, intense and roasted coffee flavor",
-    price: "₹300",
-    image: require('../images/expresso.jpg')
-  },
-  {
-    name: "Cappuccino",
-    description: "Espresso with steamed milk and a layer of foam",
-    price: "₹250",
-    image: require('../images/cappuccino.jpg')
-  },
-  {
-    name: "Latte",
-    description: "Espresso with steamed milk and a light layer of foam",
-    price: "₹400",
-    image: require('../images/latte.jpg')
-  },
-  {
-    name: "Mocha",
-    description: "Espresso with chocolate and steamed milk",
-    price: "₹450",
-    image: require('../images/mocha.jpg')
-  },
-  {
-    name: "Cold Brew",
-    description: "Smooth, cold-steeped coffee served over ice",
-    price: "₹375",
-    image: require('../images/cold-brew.jpg')
-  },
-  {
-    name: "Croissant",
-    description: "Buttery, flaky pastry perfect with coffee",
-    price: "₹80",
-    image: require('../images/croissants.jpg')
-  }
-];
-
 export default function Menu() {
+  const [menuItems, setMenuItems] = useState([]);
   const [startIndex, setStartIndex] = useState(0);
+
+  // Fetch menu items from the backend
+  useEffect(() => {
+    const fetchMenuItems = async () => {
+      try {
+        const response = await fetch('https://chasko-coffee-stop-backend.vercel.app/api/menu'); // Replace with your backend API URL
+        if (!response.ok) {
+          throw new Error('Failed to fetch menu items');
+        }
+        const data = await response.json();
+        setMenuItems(data);  // Set the menu data in state
+      } catch (error) {
+        console.error('Error fetching menu:', error);
+      }
+    };
+
+    fetchMenuItems();
+  }, []); // The empty array ensures this runs only once when the component mounts
 
   const nextItems = () => {
     setStartIndex((prevIndex) => (prevIndex + 1) % menuItems.length);
