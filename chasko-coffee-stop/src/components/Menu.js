@@ -32,7 +32,7 @@ export default function Menu() {
     setStartIndex((prevIndex) => (prevIndex - 1 + menuItems.length) % menuItems.length);
   };
 
-  const displayedItems = [...menuItems.slice(startIndex), ...menuItems.slice(0, startIndex)].slice(0, 4);
+  const displayedItems = [...menuItems.slice(startIndex), ...menuItems.slice(0, startIndex)];
 
   return (
     <section id="menu" className="min-h-screen flex items-center bg-gradient-to-br from-amber-50 to-amber-100">
@@ -43,7 +43,7 @@ export default function Menu() {
             <ChevronLeft size={24} />
           </button>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {displayedItems.map((item, index) => (
+            {displayedItems.slice(0, 4).map((item, index) => (
               <MenuItem 
                 key={index}
                 name={item.name}
