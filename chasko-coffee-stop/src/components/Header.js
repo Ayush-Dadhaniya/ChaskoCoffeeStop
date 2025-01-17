@@ -44,9 +44,7 @@ export default function Header() {
   );
 
   return (
-    <header className={`fixed top-0 bg-auto left-0 font-serif right-0 z-50 transition-colors duration-300 ${
-      isScrolled ? 'bg-brown-800' : 'bg-brown-800'
-    } text-white shadow-md`}>
+    <header className={`fixed top-0 bg-auto left-0 font-serif right-0 z-50 transition-colors duration-300 ${isScrolled ? 'bg-brown-800' : 'bg-brown-800'} text-white shadow-md`}>
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
           <ScrollLink to="home" smooth={true} duration={500} className="text-2xl font-bold cursor-pointer">
