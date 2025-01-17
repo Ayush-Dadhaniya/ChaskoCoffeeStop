@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import MenuItem from './MenuItem';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 export default function Menu() {
   const [menuItems, setMenuItems] = useState([]);
@@ -65,7 +64,7 @@ export default function Menu() {
         <h2 className="text-5xl font-bold font-serif italic text-center mb-12 text-amber-900">Our Menu</h2>
         <div className="flex items-center justify-center mb-12">
           <button onClick={prevItems} className="p-2 bg-amber-600 text-white rounded-full mr-4 hover:bg-amber-700 transition-colors">
-            <ChevronLeft className="w-6 h-6" />
+            &lt;
           </button>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {displayedItems.map((item, index) => (
@@ -79,7 +78,7 @@ export default function Menu() {
             ))}
           </div>
           <button onClick={nextItems} className="p-2 bg-amber-600 text-white rounded-full ml-4 hover:bg-amber-700 transition-colors">
-            <ChevronRight className="w-6 h-6" />
+            &gt;
           </button>
         </div>
       </div>
