@@ -44,7 +44,13 @@ export default function Menu() {
           </button>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {displayedItems.map((item, index) => (
-              <MenuItem key={index} {...item} />
+              <MenuItem 
+                key={index}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                image={item.image} // Pass the image URL from the backend response
+              />
             ))}
           </div>
           <button onClick={nextItems} className="p-2 bg-brown-600 text-white rounded-full ml-4">
