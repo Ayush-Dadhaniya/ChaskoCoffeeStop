@@ -9,7 +9,7 @@ export function MenuItem({ name, description, price, image }) {
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2 text-brown-800">{name}</h3>
         <p className="text-sm text-brown-600 mb-2">{description}</p>
-        <p className="text-brown-700 font-bold">{price}</p>
+        <p className="text-brown-700 font-bold">₹{price}</p>
       </div>
     </div>
   );
