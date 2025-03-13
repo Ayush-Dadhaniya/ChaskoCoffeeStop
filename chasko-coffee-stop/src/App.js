@@ -13,14 +13,6 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import './index.css';
 
-// const ProtectedRoute = ({ children }) => {
-//   const { user } = useAuth();
-//   if (!user) {
-//     return <Navigate to="/signin" replace />;
-//   }
-//   return children;
-// };
-
 const PublicRoute = ({ children }) => {
   const { user } = useAuth();
   if (user) {

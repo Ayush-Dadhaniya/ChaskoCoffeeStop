@@ -55,31 +55,6 @@ export default function Header() {
               <NavLink key={item.to} to={item.to}>{item.name}</NavLink>
             ))}
           </div>
-          <div className="hidden md:flex space-x-4">
-            {user ? (
-              <button
-                onClick={handleLogout}
-                className="hover:text-amber-200 transition duration-300"
-              >
-                Logout
-              </button>
-            ) : (
-              <>
-                <RouterLink
-                  to="/signup"
-                  className="hover:text-amber-200 transition duration-300"
-                >
-                  Sign Up
-                </RouterLink>
-                <RouterLink
-                  to="/signin"
-                  className="hover:text-amber-200 transition duration-300"
-                >
-                  Sign In
-                </RouterLink>
-              </>
-            )}
-          </div>
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
